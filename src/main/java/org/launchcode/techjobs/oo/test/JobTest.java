@@ -14,21 +14,12 @@ import static org.junit.Assert.*;
 @RunWith(JUnit4.class)
 public class JobTest {
 
-    private Job productTester1, productTester2;
-    @Before
-    public void createTestJobs() {
-        productTester1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
-                new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        productTester2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
-                new PositionType("Quality control"), new CoreCompetency("Persistence"));
-    }
-
     @Test
     public void testToStringContainsCorrectLabelsAndData() {
         Job productTester = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
                 new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertEquals(productTester.toString(), "\n" +
-                "ID: 8\n" +
+                "ID: " + productTester.getId() + "\n" +
                 "Name: Product tester\n" +
                 "Employer: ACME\n" +
                 "Location: Desert\n" +
@@ -37,6 +28,10 @@ public class JobTest {
     }
     @Test
     public void testSettingJobId(){
+        Job productTester1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job productTester2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertNotEquals(productTester1.getId(), productTester2.getId());
     }
 
@@ -58,7 +53,11 @@ public class JobTest {
 
     @Test
     public void testJobsForEquality() {
-        assertFalse(productTester1.equals(productTester2));
+
+        Job productTester1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job productTester2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                new PositionType("Quality control"), new CoreCompetency("Persistence"));assertFalse(productTester1.equals(productTester2));
     }
 
     @Test
@@ -75,7 +74,7 @@ public class JobTest {
     public void testToStringHandlesEmptyField() {
         Job jobSomeEmpty = new Job("", new Employer("Archimoto"), new Location("Home"), new PositionType(""), new CoreCompetency(""));
         assertEquals(jobSomeEmpty.toString(), "\n" +
-                "ID: 5\n" +
+                "ID: " + jobSomeEmpty.getId() + "\n" +
                 "Name: Data not available\n" +
                 "Employer: Archimoto\n" +
                 "Location: Home\n" +
