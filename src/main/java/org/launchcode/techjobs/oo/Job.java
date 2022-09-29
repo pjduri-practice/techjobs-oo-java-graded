@@ -1,5 +1,6 @@
 package org.launchcode.techjobs.oo;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Job {
@@ -32,13 +33,46 @@ public class Job {
 
     @Override
     public String toString() {
-        return  "\n" +
-                "ID:  3\n" +
-                "Name:  Product tester\n" +
-                "Employer:  ACME\n" +
-                "Location:  Desert\n" +
-                "Position Type:  Quality control\n" +
-                "Core Competency:  Persistence\n";
+
+        int emptyFields = 0;
+        ArrayList fieldsArray = new ArrayList<>();
+        fieldsArray.add(this.name);
+        fieldsArray.add(this.employer);
+        fieldsArray.add(this.location);
+        fieldsArray.add(this.positionType);
+        fieldsArray.add(this.coreCompetency);
+
+        if (this.name.equals("")) {
+            this.setName("Data not available");
+            emptyFields++;
+        }
+        if (this.employer.getValue().equals("") || this.employer.getValue() == null) {
+            this.employer.setValue("Data not available");
+            emptyFields++;
+        }
+        if (this.location.getValue().equals("") ||this.location.getValue().equals(null)) {
+            this.location.setValue("Data not available");
+            emptyFields++;
+        }
+        if (this.positionType.getValue().equals("") || this.positionType.getValue().equals(null)) {
+            this.positionType.setValue("Data not available");
+            emptyFields++;
+        }
+        if (this.coreCompetency.getValue().equals("") || this.coreCompetency.getValue().equals(null)) {
+            this.coreCompetency.setValue("Data not available");
+            emptyFields++;
+        }
+        if (emptyFields >= fieldsArray.size()) {
+            return "OOPS! This job does not seem to exist.";
+        } else {
+            return  "\n" +
+                    "ID: " + this.getId() + "\n" +
+                    "Name: " + this.getName() + "\n" +
+                    "Employer: " + this.getEmployer() + "\n" +
+                    "Location: " + this.getLocation() + "\n" +
+                    "Position Type: " + this.getPositionType() + "\n" +
+                    "Core Competency: " + this.getCoreCompetency() + "\n";
+        }
     }
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
@@ -101,5 +135,5 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
-    
+
 }
