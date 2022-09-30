@@ -1,11 +1,10 @@
 package org.launchcode.techjobs.oo.test;
 
-import org.junit.Before;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.launchcode.techjobs.oo.*;
-
 import static org.junit.Assert.*;
 
 /**
@@ -58,6 +57,8 @@ public class JobTest {
                 new PositionType("Quality control"), new CoreCompetency("Persistence"));
         Job productTester2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
                 new PositionType("Quality control"), new CoreCompetency("Persistence"));assertFalse(productTester1.equals(productTester2));
+        assertNotEquals(productTester1, productTester2);
+
     }
 
     @Test
