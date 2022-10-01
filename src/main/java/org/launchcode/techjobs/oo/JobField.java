@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public abstract class JobField {
 
-    private int id;
+    private final int id;
     private static int nextId = 1;
     private String value;
 
@@ -15,6 +15,23 @@ public abstract class JobField {
 
     public JobField(String value) {
         this();
+        if (testEmptyValue(value)) {
+            value = "Data not available";
+        }
+        this.value = value;
+    }
+
+    // Getters and Setters:
+
+    public int getId() {
+        return id;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
         this.value = value;
     }
 
@@ -36,18 +53,12 @@ public abstract class JobField {
         return Objects.hash(getId());
     }
 
-    // Getters and Setters:
-
-    public int getId() {
-        return id;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
+    public static boolean testEmptyValue(String value) {
+        if (value.equals("") || value.equals(null)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
